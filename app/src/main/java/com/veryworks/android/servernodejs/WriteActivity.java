@@ -78,7 +78,8 @@ public class WriteActivity extends AppCompatActivity {
                         1. 내가 정상적으로 새글을 입력한 후 데이터를 전송하고 종료
                         2. 새글을 전송하지 않고 화면을 그냥 종료
 
-                        위의 두 가지를 구분해서 결과값을 호출한 MainActivity로 넘겨서 처리
+                        위의 두 가지를 구분하고
+                        1번 또는 2번 결과값을 MainActivity로 넘겨서 처리
                      */
                     finish();
                 }
