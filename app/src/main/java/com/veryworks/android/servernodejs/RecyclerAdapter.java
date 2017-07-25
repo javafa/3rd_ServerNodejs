@@ -1,29 +1,43 @@
 package com.veryworks.android.servernodejs;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import java.util.List;
 
 /**
  * Created by pc on 7/25/2017.
  */
 
-public class RecyclerAdapter extends RecyclerView.Adapter {
-
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
-    }
-
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
-    }
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Holder> {
+    LayoutInflater inflater;
+    List<Bbs> data;
 
     @Override
     public int getItemCount() {
-        return 0;
+        return data.size();
+    }
+
+    public RecyclerAdapter(Context context, List<Bbs> data){
+        this.inflater = LayoutInflater.from(context);
+        this.data = data;
+    }
+
+    @Override
+    public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = inflater.inflate(R.layout.item_list, parent, false);
+        return new Holder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(Holder holder, int position) {
+        Bbs bbs = data.get(position);
+        holder.setTitle(bbs.title);
+        holder.setDate(bbs.date);
     }
 
     class Holder extends RecyclerView.ViewHolder{
