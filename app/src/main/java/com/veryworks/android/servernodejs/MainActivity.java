@@ -45,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
         btnWrite.setOnClickListener(v->{
+            /*
+                호출시 startActivity 를 사용하면 onResume 처리를 따로 해줘야 된다.
+             */
             Intent intent = new Intent(this, WriteActivity.class);
             startActivity(intent);
         });
