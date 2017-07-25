@@ -5,9 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
+
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -53,7 +57,16 @@ public class WriteActivity extends AppCompatActivity {
         IBbs myServer = client.create(IBbs.class);
 
         // 3. 서비스의 특정 함수 호출 -> Observable 생성
-        Observable<ResponseBody> observable = myServer.write(bbs);
+        Gson gson = new Gson();
+        // bbs 객체를 수동으로 전송하기 위해서는
+        // bbs 객체 -> json String 변환
+        // RequestBody 에 미디어타입과, String 으로 벼환된 데이터를 담아서 전송
+        RequestBody body = RequestBody.create(
+                MediaType.parse("application/json"),
+                gson.toJson(bbs)
+        );
+
+        Observable<ResponseBody> observable = myServer.write(body);
 
         // 4. subscribe 등록
         observable.subscribeOn(Schedulers.io())

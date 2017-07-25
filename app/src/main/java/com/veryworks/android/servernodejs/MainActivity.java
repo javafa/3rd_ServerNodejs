@@ -1,5 +1,6 @@
 package com.veryworks.android.servernodejs;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -42,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         btnWrite = (Button) findViewById(R.id.btnWrite);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+
+        btnWrite.setOnClickListener(v->{
+            Intent intent = new Intent(this, WriteActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void loader() {

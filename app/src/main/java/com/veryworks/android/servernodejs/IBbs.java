@@ -1,7 +1,9 @@
 package com.veryworks.android.servernodejs;
 
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
+import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -14,7 +16,7 @@ public interface IBbs {
     public Observable<ResponseBody> read();
 
     @POST("bbs")
-    public Observable<ResponseBody> write(Bbs bbs);
+    public Observable<ResponseBody> write(@Body RequestBody body);
 
     @PUT("bbs")
     public Observable<ResponseBody> update(Bbs bbs);
