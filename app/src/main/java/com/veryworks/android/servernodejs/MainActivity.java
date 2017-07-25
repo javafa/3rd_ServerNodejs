@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         MyServer myServer = client.create(MyServer.class);
 
         // 3. 서비스의 특정 함수 호출 -> Observable 생성
-        Observable<Bbs> observable = myServer.read();
+        Observable<List<Bbs>> observable = myServer.read();
 
         // 4. subscribe 등록
         observable.subscribeOn(Schedulers.io())
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         public static final String SERVER = "http://192.168.10.240/";
 
         @GET("bbs")
-        public Observable<Bbs> read();
+        public Observable<List<Bbs>> read();
 
         @POST("bbs")
         public void write(Bbs bbs);
@@ -85,5 +85,9 @@ public class MainActivity extends AppCompatActivity {
 
         @DELETE("bbs")
         public void delete(Bbs bbs);
+    }
+
+    interface IUser {
+
     }
 }
