@@ -4,8 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.Button;
+
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,10 +67,17 @@ public class MainActivity extends AppCompatActivity {
             .subscribe(
                 responseBody -> {
                     // 1. 데이터를 꺼내고
-                    Log.e("Retrofit","data="+responseBody.string());
+                    String jsonString = responseBody.string();
+                    Gson gson = new Gson();
+//                    Type type = new TypeToken<List<Bbs>>(){}.getType(); // 컨버팅 하기 위한 타입지정
+//                    List<Bbs> data = gson.fromJson(jsonString, type);
+                    Bbs data[] = gson.fromJson(jsonString, Bbs[].class);
                     // 2. 데이터를 아답터에 세팅하고
-
+                    for(Bbs bbs : data){
+                        this.data.add(bbs);
+                    }
                     // 3. 아답터 갱신
+                    adapter.notifyDataSetChanged();
                 }
             );
     }
