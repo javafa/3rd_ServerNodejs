@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+
         data = new ArrayList<>();
         adapter = new RecyclerAdapter(this, data);
         recyclerView.setAdapter(adapter);
@@ -30,5 +31,9 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         btnWrite = (Button) findViewById(R.id.btnWrite);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+    }
+
+    private void loader() {
+
     }
 }
