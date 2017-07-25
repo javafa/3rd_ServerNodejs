@@ -9,6 +9,12 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Observable;
+import retrofit2.http.DELETE;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.PUT;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button btnWrite;
@@ -35,5 +41,21 @@ public class MainActivity extends AppCompatActivity {
 
     private void loader() {
 
+    }
+
+    interface myServer {
+        public static final String SERVER = "http://192.168.10.240/";
+
+        @GET("bbs")
+        public Observable<Bbs> read();
+
+        @POST("bbs")
+        public void write(Bbs bbs);
+
+        @PUT("bbs")
+        public void update(Bbs bbs);
+
+        @DELETE("bbs")
+        public void delete(Bbs bbs);
     }
 }
