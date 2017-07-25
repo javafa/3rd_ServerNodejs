@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+// 람다추가 2
 apply plugin: 'me.tatarka.retrolambda'
 
 android {
@@ -18,6 +19,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    // 람다추가 3
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
