@@ -1,5 +1,6 @@
 package com.veryworks.android.servernodejs;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -49,8 +50,24 @@ public class MainActivity extends AppCompatActivity {
                 호출시 startActivity 를 사용하면 onResume 처리를 따로 해줘야 된다.
              */
             Intent intent = new Intent(this, WriteActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, REQ_CODE);
         });
+    }
+
+    private final static int REQ_CODE = 101;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == Activity.RESULT_OK){
+            switch(requestCode){
+                case REQ_CODE:
+                    this.data.clear(); // 기존에 있던 데이터를 삭제해준다...
+                                       // 중복되는 데이터가 있다면 갱신하지 않는 방향으로...
+                    loader();
+                    break;
+            }
+        }
     }
 
     private void loader() {

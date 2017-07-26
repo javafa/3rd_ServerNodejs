@@ -1,5 +1,6 @@
 package com.veryworks.android.servernodejs;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
@@ -81,6 +82,7 @@ public class WriteActivity extends AppCompatActivity {
                         위의 두 가지를 구분하고
                         1번 또는 2번 결과값을 MainActivity로 넘겨서 처리
                      */
+                    setResult(Activity.RESULT_OK); // 값을 인텐트에 담아두기만 한다.
                     finish();
                 }
             );
